@@ -1,0 +1,40 @@
+<!-- This type defines the filter configuration data for the Jabber filter 
+	which sends an Instant message to an account on Google Talk "class" - The 
+	filter classname. "fromEmailAddress" - The email address of the person sending 
+	the instant message "password" - Password of the person sending the instant 
+	message "resourceName" - Unique resource name "toEmailaddress" - The email 
+	address of the person receiving the instant message "messageStr" - The content 
+	of the message -->
+
+<entityStoreData>
+	<entityType name="AWSLambdaFilter" extends="AWSFilter">
+		<constant name="class" type="string" value="com.axway.aws.lambda.AWSLambdaFilter" />
+		<field name="functionName" type="string" cardinality="1" />
+		<field cardinality="?" name="awsCredential" type="^ApiKeyProfile"/>
+		<field default="us-east-1" name="region" type="string"/>		
+	</entityType>
+
+	
+
+	<!-- Internationalization for logging / audit trail -->
+	<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"
+		type="InternationalizationFilter">
+		<key type="Internationalization">
+			<id field="name" value="Internationalization Default" />
+		</key>
+		<fval name="type">
+			<value>AWSLambdaFilter</value>
+		</fval>
+		<fval name="logFatal">
+			<value>Error in the AWS Lambda  Error:
+				${circuit.exception}</value>
+		</fval>
+		<fval name="logFailure">
+			<value>Failed in the AWS Lambda filter</value>
+		</fval>
+		<fval name="logSuccess">
+			<value>Success in the AWS Lambda filter</value>
+		</fval>
+	</entity>
+
+</entityStoreData>
