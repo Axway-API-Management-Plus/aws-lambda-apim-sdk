@@ -23,6 +23,19 @@ This artifact was successfully tested for the following versions:
 - Restart Policystudo with policstudio -clean option
 - Select Policystudio Import custom filter option from File menu and select file aws-lambda-apim-sdk/src/main/resources/AWSLambdaTypeSet.xml
 
+## Policy 
+![image](https://user-images.githubusercontent.com/3596610/139945308-2d623276-6601-4395-9dbb-4831a17963c0.png)
+
+Policy accepts following parameters
+
+- Lambda function name
+- AWS credential profile name [Refer](https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/guide_credentials_profiles.html) for more information
+
+
+Policy generates following parameters
+
+- aws.lambda.response - Response body from Lambda function
+- aws.lambda.http.status.code - Response code from Lambda functoin
 
 
 
