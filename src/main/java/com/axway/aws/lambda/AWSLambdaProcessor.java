@@ -1,9 +1,6 @@
 package com.axway.aws.lambda;
 
-
-
 import java.security.GeneralSecurityException;
-
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.Protocol;
 import com.amazonaws.auth.AWSCredentials;
@@ -29,7 +26,7 @@ public class AWSLambdaProcessor extends MessageProcessor {
 	private String functionName;
 	private AWSLambda awsLambda;
 	
-	private Selector<String> contentBody = new Selector<String>("${content.body}", String.class);
+	private Selector<String> contentBody = new Selector<>("${content.body}", String.class);
 
 	public AWSLambdaProcessor() {
 	}
@@ -37,14 +34,14 @@ public class AWSLambdaProcessor extends MessageProcessor {
 	@Override
 	public void filterAttached(ConfigContext ctx, com.vordel.es.Entity entity) throws EntityStoreException {
 		super.filterAttached(ctx, entity);
-		Selector<String> awsRegion = new Selector<String>(entity.getStringValue("region"), String.class);
+		Selector<String> awsRegion = new Selector<>(entity.getStringValue("region"), String.class);
 		com.vordel.es.Entity clientConfig = ctx.getEntity(entity.getReferenceValue("clientConfiguration"));
 		AWSCredentials cred = AWSFactory.getCredentials(ctx, entity);
 		ClientConfiguration clientConfiguration = createClientConfiguration(ctx, clientConfig);
 		String awsRegionStr =   awsRegion.getLiteral();
 		awsLambda = AWSLambdaClientBuilder.standard().withClientConfiguration(clientConfiguration).withRegion(Regions.fromName(awsRegionStr))
 		        .withCredentials(new AWSStaticCredentialsProvider(cred)).build();
-		functionName = new Selector<String>(entity.getStringValue("functionName"), String.class).getLiteral();
+		functionName = new Selector<>(entity.getStringValue("functionName"), String.class).getLiteral();
 
 	}
 	
@@ -100,14 +97,11 @@ public class AWSLambdaProcessor extends MessageProcessor {
 			return false;
 		return true;
 	}
-	
-	
 
 	@Override
 	public boolean invoke(Circuit arg0, Message msg) throws CircuitAbortException {
 		
 		String body = contentBody.substitute(msg);
-		
 		InvokeRequest invokeRequest = new InvokeRequest();
 		invokeRequest.setPayload(body);
 		invokeRequest.setFunctionName(functionName);
@@ -123,8 +117,7 @@ public class AWSLambdaProcessor extends MessageProcessor {
 			Trace.error(e);
 			return false;
 		}
-		
-		
+
 	}
 
 }

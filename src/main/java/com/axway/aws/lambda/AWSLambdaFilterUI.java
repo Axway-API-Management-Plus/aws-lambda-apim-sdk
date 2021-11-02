@@ -1,42 +1,46 @@
 package com.axway.aws.lambda;
 
-import java.util.Vector;
-
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.swt.graphics.Image;
-
-import com.vordel.client.manager.Images;
+import com.vordel.client.manager.Manager;
 import com.vordel.client.manager.filter.DefaultGUIFilter;
-import com.vordel.client.manager.wizard.VordelPage;
+import com.vordel.es.ESPK;
+import com.vordel.es.Entity;
+import com.vordel.es.EntityStoreException;
 
-public class AWSLambdaFilterUI extends DefaultGUIFilter {
-	public Vector<VordelPage> getPropertyPages() {
-		Vector<VordelPage> pages = new Vector<VordelPage>();
-		pages.add(new AWSLambdaFilterPage());
-		pages.add(createLogPage());
-		return pages;
+public class AWSLambdaFilterUI extends DefaultGUIFilter  {
+
+	private static String TYPE = "AWSLambdaFilter";
+	@Override
+	public void childAdded(Entity child) {
+		final String typeName = child.getType().getName();
+		if (typeName.equalsIgnoreCase(TYPE)) {
+			// reconfigure parent entity filter
+			entityUpdated(getEntity());
+		}
 	}
 
-	public String[] getCategories() {
-		return new String[] { _("FILTER_GROUP_AWS_LAMBDA") };
+	@Override
+	public void childDeleted(ESPK parentPK, ESPK childPK) {
+		Entity child = null;
+		try {
+			child = Manager.getInstance().getSelectedEntityStore().
+					getSolutionPack().getStore().getEntity(childPK);
+			final String typeName = child.getType().getName();
+			if (typeName.equalsIgnoreCase(TYPE)) {
+				// reconfigure parent entity filter
+				entityUpdated(getEntity());
+			}
+		} catch (EntityStoreException e) {
+			// force the update
+			entityUpdated(getEntity());
+		}
 	}
 
-	private static final String IMAGE_KEY = "amazon";
-
-	public String getSmallIconId() {
-		return IMAGE_KEY;
-	}
-
-	public Image getSmallImage() {
-		return Images.getImageRegistry().get(getSmallIconId());
-	}
-
-	public ImageDescriptor getSmallIcon() {
-		return Images.getImageDescriptor(getSmallIconId());
-	}
-
-	
-	public String getTypeName() {
-		return _("AWS_LAMBDA_FILTER");
+	@Override
+	public void childUpdated(Entity child) {
+		final String typeName = child.getType().getName();
+		if (typeName.equalsIgnoreCase(TYPE)) {
+			// reconfigure parent entity filter
+			entityUpdated(getEntity());
+		}
 	}
 }

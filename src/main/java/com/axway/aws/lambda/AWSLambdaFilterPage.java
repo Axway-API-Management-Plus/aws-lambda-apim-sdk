@@ -8,8 +8,8 @@ public class AWSLambdaFilterPage extends VordelPage {
 	
 	public AWSLambdaFilterPage() {
 		super("AWSLAMBDAPage");
-		setTitle(_("AWS_LAMBDA_PAGE"));
-		setDescription(_("AWS_LAMBDA_PAGE_DESCRIPTION"));
+		setTitle("AWS_LAMBDA_PAGE");
+		setDescription("AWS_LAMBDA_PAGE_DESCRIPTION");
 		setPageComplete(true);
 	}
 
