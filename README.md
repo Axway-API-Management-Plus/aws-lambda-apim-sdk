@@ -4,21 +4,26 @@ This filter allows you to Invoke AWS Lambda Function
 
 ## API Management Version Compatibilty
 This artifact was successfully tested for the following versions:
-- V7.5.3 
+- 7.7 Auguest 2021 Release
+
+## Build Custom Filter
+
+```bash
+./gradlew build
+```
 
 
 ## Install
 
-```
-. Copy  aws-lambda-apim-sdk\lib\aws-lambda-apim-sdk-*.jar file in the API Gateway VORDEL_HOME/groups/group-x/instance-x/ext/lib 
-. Download http://central.maven.org/maven2/com/amazonaws/aws-java-sdk-lambda/1.11.282/aws-java-sdk-lambda-1.11.282.jar and copy the file to VORDEL_HOME/groups/group-x/instance-x/ext/lib 
-. Download  http://central.maven.org/maven2/com/amazonaws/aws-java-sdk-core/1.11.282/aws-java-sdk-core-1.11.282.jar and copy the file to VORDEL_HOME/groups/group-x/instance-x/ext/lib
-. Restart API Gateway instance
-. Add aws-lambda-apim-sdk\lib\aws-lambda-apim-sdk-*.jar file to Policy Studio Runtime Dependencies
-. Restart Policystudo with policstudio -clean option
-. Select Policystudio Import custom filter option from File menu and select file aws-lambda-apim-sdk/src/main/resources/AWSLambdaTypeSet.xml
+- Copy  aws-lambda-apim-sdk\lib\aws-lambda-apim-sdk-*.jar file in the API Gateway VORDEL_HOME/groups/group-x/instance-x/ext/lib 
+- Download https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-lambda/1.11.564/aws-java-sdk-lambda-1.11.564.jar and copy the file to VORDEL_HOME/groups/group-x/instance-x/ext/lib 
+- Download https://repo1.maven.org/maven2/com/amazonaws/jmespath-java/1.11.564/jmespath-java-1.11.564.jar and copy the file to VORDEL_HOME/groups/group-x/instance-x/ext/lib
+- Restart API Gateway instance
+- Copy aws-lambda-apim-sdk\lib\aws-lambda-apim-sdk-*.jar file to Policy Studio dropins folder
+- Restart Policystudo with policstudio -clean option
+- Select Policystudio Import custom filter option from File menu and select file aws-lambda-apim-sdk/src/main/resources/AWSLambdaTypeSet.xml
 
-```
+
 
 
 ## Contributing
