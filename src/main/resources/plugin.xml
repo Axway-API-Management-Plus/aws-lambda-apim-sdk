@@ -6,7 +6,7 @@
             point="com.vordel.rcp.filterbase.filterGUI">
         <filter
                 class="com.axway.aws.lambda.AWSLambdaFilter"
-                icon="images/amazon.gif"
+                icon="amazon.gif"
                 name="AWS Lambda"
                 page="com.axway.aws.lambda.AWSLambdaFilterPage">
             <category
