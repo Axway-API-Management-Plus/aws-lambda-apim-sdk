@@ -10,8 +10,9 @@
 	<entityType name="AWSLambdaFilter" extends="AWSFilter">
 		<constant name="class" type="string" value="com.axway.aws.lambda.AWSLambdaFilter" />
 		<field name="functionName" type="string" cardinality="1" />
-		<field cardinality="?" name="awsCredential" type="^ApiKeyProfile"/>
-		<field default="us-east-1" name="region" type="string"/>		
+<!--		<field cardinality="?" name="awsCredential" type="^ApiKeyProfile"/>-->
+<!--		<field default="us-east-1" name="region" type="string"/>-->
+		<field name="awsProfileName" type="string" cardinality="1" />
 	</entityType>
 
 	

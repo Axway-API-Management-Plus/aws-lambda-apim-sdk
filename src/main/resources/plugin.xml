@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+    <extension
+            id="com.vordel.rcp.filterbase.filterGUI.awslambda"
+            point="com.vordel.rcp.filterbase.filterGUI">
+        <filter
+                class="com.axway.aws.lambda.AWSLambdaFilter"
+                icon="amazon.gif"
+                name="AWS Lambda"
+                page="com.axway.aws.lambda.AWSLambdaFilterPage">
+            <category
+                    id="com.vordel.ui.filter.category.amazon" />
+        </filter>
+    </extension>
+    <extension
+            point="com.vordel.rcp.filterbase.filterModel">
+        <filter
+                class="com.axway.aws.lambda.AWSLambdaFilterUI"
+                type="com.axway.aws.lambda.AWSLambdaFilter">
+        </filter>
+    </extension>
+</plugin>

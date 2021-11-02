@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+
+group 'com.axway'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+def apim_folder = '/Users/rnatarajan/APIM/AxwayProducts/apim_7_7_aug21'
+def ps_folder = '/Users/rnatarajan/APIM/AxwayProducts/apim_7_7_aug21'
+
+dependencies {
+
+    implementation group: 'com.amazonaws', name: 'aws-java-sdk-lambda', version: '1.11.564'
+    implementation fileTree( dir: "${apim_folder}/lib", include: '*.jar')
+    implementation fileTree(dir: "${apim_folder}/lib", include: '*.jar')
+    implementation fileTree(dir: "${apim_folder}/lib/modules", include: '*.jar')
+    implementation fileTree(dir: "${apim_folder}/lib/plugins", include: '*.jar')
+    // policystudio
+    implementation fileTree(dir: "${ps_folder}/plugins", include: '*.jar')
+    implementation files("${ps_folder}/plugins/com.vordel.rcp.filterbase_7.7.0.v20210906-1230")
+
+}
+
+jar {
+
+    manifest {
+        attributes('Bundle-Name': 'AWS Lambda Filter',
+                'Bundle-SymbolicName': 'com.axway.aws.lambda;singleton:=true',
+                'Bundle-Version': '2.0.0',
+                'Bundle-Vendor': 'Axway, Inc.',
+                'Bundle-ClassPath': '.',
+                'Export-Package': 'com.axway.aws.lambda',
+                'Bundle-RequiredExecutionEnvironment': 'JavaSE-1.7',
+                'Bundle-ManifestVersion': '2',
+                'Require-Bundle': 'com.vordel.rcp.filterbase')
+    }
+}

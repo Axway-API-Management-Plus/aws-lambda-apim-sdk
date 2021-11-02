@@ -1,4 +1,3 @@
 <typeSet>
-    <!-- JabberFilter Typedoc -->
     <typedoc file="AWSLambdaDesc.xml" />
 </typeSet>

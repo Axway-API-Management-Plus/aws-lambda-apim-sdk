@@ -5,11 +5,11 @@ import org.eclipse.swt.widgets.Composite;
 import com.vordel.client.manager.wizard.VordelPage;
 
 public class AWSLambdaFilterPage extends VordelPage {
-	
+
 	public AWSLambdaFilterPage() {
-		super("AWSLAMBDAPage");
-		setTitle(_("AWS_LAMBDA_PAGE"));
-		setDescription(_("AWS_LAMBDA_PAGE_DESCRIPTION"));
+		super("AWSLambdaPage");
+		setTitle(Resources.AWS_LAMBDA_PAGE);
+		setDescription(Resources.AWS_LAMBDA_PAGE_DESCRIPTION);
 		setPageComplete(true);
 	}
 
