@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'com.axway'
-version '1.0-SNAPSHOT'
+version '1.0.1'
 sourceCompatibility = 1.8
 
 repositories {
@@ -26,17 +26,3 @@ dependencies {
 
 }
 
-jar {
-
-    manifest {
-        attributes('Bundle-Name': 'AWS Lambda Filter',
-                'Bundle-SymbolicName': 'com.axway.aws.lambda;singleton:=true',
-                'Bundle-Version': '2.0.0',
-                'Bundle-Vendor': 'Axway, Inc.',
-                'Bundle-ClassPath': '.',
-                'Export-Package': 'com.axway.aws.lambda',
-                'Bundle-RequiredExecutionEnvironment': 'JavaSE-1.7',
-                'Bundle-ManifestVersion': '2',
-                'Require-Bundle': 'com.vordel.rcp.filterbase')
-    }
-}
