@@ -4,7 +4,7 @@ This filter allows you to Invoke AWS Lambda Function
 
 ## API Management Version Compatibilty
 This artifact was successfully tested for the following versions:
-- 7.7 Auguest 2021 Release
+- 7.7 Auguest 2021 Release with patch - 25532
 
 ## Build Custom Filter
 
