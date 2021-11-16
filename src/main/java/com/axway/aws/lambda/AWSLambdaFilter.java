@@ -28,4 +28,10 @@ public class AWSLambdaFilter extends DefaultFilter {
 		return AWSLambdaProcessor.class;
 	}
 
+	public Class getConfigPanelClass() throws ClassNotFoundException {
+		// Avoid any compile or runtime dependencies on SWT and other UI
+		// libraries by lazily loading the class when required.
+		return Class.forName("com.axway.aws.lambda.AWSLambdaFilterUI");
+	}
+
 }

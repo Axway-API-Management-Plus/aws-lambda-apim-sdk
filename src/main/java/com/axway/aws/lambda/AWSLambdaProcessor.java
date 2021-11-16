@@ -42,70 +42,11 @@ public class AWSLambdaProcessor extends MessageProcessor {
 		}else {
 			profileCredentialsProvider = new ProfileCredentialsProvider(profileName.getLiteral());
 		}
-//		Selector<String> awsRegion = new Selector<>(entity.getStringValue("region"), String.class);
-//		com.vordel.es.Entity clientConfig = ctx.getEntity(entity.getReferenceValue("clientConfiguration"));
-//		AWSCredentials cred = AWSFactory.getCredentials(ctx, entity);
-//		ClientConfiguration clientConfiguration = createClientConfiguration(ctx, clientConfig);
-//		String awsRegionStr =   awsRegion.getLiteral();
-//		awsLambda = AWSLambdaClientBuilder.standard().withClientConfiguration(clientConfiguration).withRegion(Regions.fromName(awsRegionStr))
-//		        .withCredentials(new AWSStaticCredentialsProvider(cred)).build();
 		awsLambda = AWSLambdaClientBuilder.standard().withCredentials(profileCredentialsProvider).build();
 		functionName = new Selector<>(entity.getStringValue("functionName"), String.class).getLiteral();
 
 	}
-	
-//	private ClientConfiguration createClientConfiguration(ConfigContext ctx, Entity entity) throws EntityStoreException {
-//		ClientConfiguration clientConfig = new ClientConfiguration();
-//		if (entity == null) {
-//			Trace.debug("using empty default ClientConfiguration");
-//			return clientConfig;
-//		}
-//		if (containsKey(entity, "connectionTimeout"))
-//			clientConfig.setConnectionTimeout(entity.getIntegerValue("connectionTimeout"));
-//		if (containsKey(entity, "maxConnections"))
-//			clientConfig.setMaxConnections(entity.getIntegerValue("maxConnections"));
-//		if (containsKey(entity, "maxErrorRetry"))
-//			clientConfig.setMaxErrorRetry(entity.getIntegerValue("maxErrorRetry"));
-//		if (containsKey(entity, "protocol"))
-//			clientConfig.setProtocol(Protocol.valueOf(entity.getStringValue("protocol")));
-//		if (containsKey(entity, "proxyDomain"))
-//			clientConfig.setProxyDomain(entity.getStringValue("proxyDomain"));
-//		if (containsKey(entity, "proxyHost"))
-//			clientConfig.setProxyHost(entity.getStringValue("proxyHost"));
-//
-//		if (containsKey(entity, "proxyPassword")) {
-//			try {
-//				byte[] password = entity.getEncryptedValue("proxyPassword");
-//				String proxyPassword = new String(ctx.getCipher().decrypt(password));
-//				clientConfig.setProxyPassword(proxyPassword);
-//			} catch (GeneralSecurityException e) {
-//				Trace.error(e);
-//			}
-//		}
-//		if (containsKey(entity, "proxyPort"))
-//			clientConfig.setProxyPort(entity.getIntegerValue("proxyPort"));
-//		if (containsKey(entity, "proxyUsername"))
-//			clientConfig.setProxyUsername(entity.getStringValue("proxyUsername"));
-//		if (containsKey(entity, "proxyWorkstation"))
-//			clientConfig.setProxyWorkstation(entity.getStringValue("proxyWorkstation"));
-//		if (containsKey(entity, "socketTimeout"))
-//			clientConfig.setSocketTimeout(entity.getIntegerValue("socketTimeout"));
-//		if (containsKey(entity, "userAgent"))
-//			clientConfig.setUserAgentPrefix(entity.getStringValue("userAgent"));
-//		if (containsKey(entity, "socketSendBufferSizeHint") &&  containsKey(entity, "socketReceiveBufferSizeHint"))
-//			clientConfig.setSocketBufferSizeHints(entity.getIntegerValue("socketSendBufferSizeHint"),
-//					entity.getIntegerValue("socketReceiveBufferSizeHint"));
-//		return clientConfig;
-//	}
-//
-//	private boolean containsKey(Entity entity, String fieldName) {
-//		if (!entity.containsKey(fieldName))
-//			return false;
-//		String value = entity.getStringValue(fieldName);
-//		if (value == null || value.length() == 0)
-//			return false;
-//		return true;
-//	}
+
 
 	@Override
 	public boolean invoke(Circuit arg0, Message msg) throws CircuitAbortException {

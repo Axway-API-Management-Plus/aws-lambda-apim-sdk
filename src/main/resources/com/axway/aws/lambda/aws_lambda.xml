@@ -2,25 +2,6 @@
 	<panel columns="2">
 		<NameAttribute />
 
-<!--		<group label="AWS_SETTINGS" span="2" columns="2" margin="0,0,0,7"-->
-<!--			fill="false">-->
-<!--			<ReferenceSelector field="awsCredential" required="true"-->
-<!--				selectableTypes="ApiKeyProfile" label="CHOOSE_AWS_CREDENTTIAL_LABEL"-->
-<!--				title="CHOOSE_AWS_CREDENTTIAL_DIALOG_TITLE" searches="AuthProfilesGroup,ApiKeyGroup,ApiKeyProviderProfile" />-->
-
-<!--			<ComboAttribute field="region" label="AWS_REGION_LABEL"-->
-<!--				required="true" contentSource="com.vordel.circuit.aws.RegionUtils.regions"-->
-<!--				stretch="true" />-->
-
-<!--			<ReferenceSelector field="clientConfiguration"-->
-<!--				required="true" selectableTypes="AWSClientConfiguration" label="AWS_CLIENT_CONFIGURATION"-->
-<!--				title="AWS_CLIENT_CONFIGURATION_DIALOG_TITLE" searches="AWSSettings" />-->
-
-<!--		</group>-->
-
-
-
-
 		<!-- Lambda Settings -->
 		<group label="AWS_LAMBDA_SETTINGS_LABEL" columns="2" span="2"
 			fill="false">

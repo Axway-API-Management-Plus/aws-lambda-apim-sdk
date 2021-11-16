@@ -18,8 +18,13 @@ This artifact was successfully tested for the following versions:
 - Copy  aws-lambda-apim-sdk\lib\aws-lambda-apim-sdk-*.jar file in the API Gateway VORDEL_HOME/groups/group-x/instance-x/ext/lib 
 - Download https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-lambda/1.11.564/aws-java-sdk-lambda-1.11.564.jar and copy the file to VORDEL_HOME/groups/group-x/instance-x/ext/lib 
 - Download https://repo1.maven.org/maven2/com/amazonaws/jmespath-java/1.11.564/jmespath-java-1.11.564.jar and copy the file to VORDEL_HOME/groups/group-x/instance-x/ext/lib
+- Configure AWS region 
+    ```bash
+    $export AWS_REGION=us-west-2
+    ```
+- Configure AWS Credentials profile
 - Restart API Gateway instance
-- Copy aws-lambda-apim-sdk\lib\aws-lambda-apim-sdk-*.jar file to Policy Studio dropins folder
+- Add the new JAR and any third-party JAR files used by the AWS lambda filter classes  to the runtime dependencies in Policy Studio. Select Window > Preferences > runtime Dependencies, and click Add to browse to the new JAR and any third-party JARs, and add them to the list. Click Apply to save the changes.
 - Restart Policystudo with policstudio -clean option
 - Select Policystudio Import custom filter option from File menu and select file aws-lambda-apim-sdk/src/main/resources/AWSLambdaTypeSet.xml
 

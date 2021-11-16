@@ -1,46 +1,47 @@
 package com.axway.aws.lambda;
 
-import com.vordel.client.manager.Manager;
+import java.util.Vector;
+
+import com.vordel.client.manager.filter.log.LogPage;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.graphics.Image;
+
+import com.vordel.client.manager.Images;
 import com.vordel.client.manager.filter.DefaultGUIFilter;
-import com.vordel.es.ESPK;
-import com.vordel.es.Entity;
-import com.vordel.es.EntityStoreException;
+import com.vordel.client.manager.wizard.VordelPage;
 
-public class AWSLambdaFilterUI extends DefaultGUIFilter  {
-
-	private static String TYPE = "AWSLambdaFilter";
-	@Override
-	public void childAdded(Entity child) {
-		final String typeName = child.getType().getName();
-		if (typeName.equalsIgnoreCase(TYPE)) {
-			// reconfigure parent entity filter
-			entityUpdated(getEntity());
-		}
+public class AWSLambdaFilterUI extends DefaultGUIFilter {
+	public Vector<VordelPage> getPropertyPages() {
+		Vector<VordelPage> pages = new Vector<>();
+		pages.add(new AWSLambdaFilterPage());
+		pages.add(createLogPage());
+		return pages;
 	}
 
-	@Override
-	public void childDeleted(ESPK parentPK, ESPK childPK) {
-		Entity child = null;
-		try {
-			child = Manager.getInstance().getSelectedEntityStore().
-					getSolutionPack().getStore().getEntity(childPK);
-			final String typeName = child.getType().getName();
-			if (typeName.equalsIgnoreCase(TYPE)) {
-				// reconfigure parent entity filter
-				entityUpdated(getEntity());
-			}
-		} catch (EntityStoreException e) {
-			// force the update
-			entityUpdated(getEntity());
-		}
+	private LogPage createLogPage() {
+		return new LogPage();
 	}
 
-	@Override
-	public void childUpdated(Entity child) {
-		final String typeName = child.getType().getName();
-		if (typeName.equalsIgnoreCase(TYPE)) {
-			// reconfigure parent entity filter
-			entityUpdated(getEntity());
-		}
+	public String[] getCategories() {
+		return new String[] { resolve("FILTER_GROUP_AWS_LAMBDA") };
+	}
+
+	private static final String IMAGE_KEY = "amazon";
+
+	public String getSmallIconId() {
+		return IMAGE_KEY;
+	}
+
+	public Image getSmallImage() {
+		return Images.getImageRegistry().get(getSmallIconId());
+	}
+
+	public ImageDescriptor getSmallIcon() {
+		return Images.getImageDescriptor(getSmallIconId());
+	}
+
+
+	public String getTypeName() {
+		return resolve("AWS_LAMBDA_FILTER");
 	}
 }
